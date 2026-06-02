@@ -1,0 +1,924 @@
+/**
+ * Whisper - Adaptive/Responsive Styles
+ * Адаптация для мобильных, планшетов и десктопов
+ */
+
+/* ============================================
+   MOBILE FIRST - До 640px (смартфоны)
+   ============================================ */
+
+@media (max-width: 640px) {
+  
+  /* NAVIGATION - Верхняя панель упрощенная */
+  .nav {
+    padding: 0 12px;
+    height: 56px;
+    gap: 12px;
+  }
+  
+  .nav-logo {
+    font-size: 22px;
+  }
+  
+  /* СКРЫВАЕМ основное меню сверху - оно переезжает вниз */
+  .nav-links {
+    display: none !important;
+  }
+  
+  /* Оставляем только правую часть сверху */
+  .nav-right {
+    margin-left: auto;
+    gap: 10px;
+  }
+  
+  .nav-srch {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+  
+  .user-pill {
+    padding: 3px 10px 3px 3px;
+  }
+  
+  .user-pill img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .user-pill-n {
+    font-size: 12px;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* ============================================
+     НИЖНЯЯ НАВИГАЦИЯ (Bottom Navigation Bar)
+     ============================================ */
+  
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--s1);
+    border-top: 1px solid var(--b1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    z-index: 999;
+    /* Эффект размытия */
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(15, 17, 32, 0.95);
+  }
+  
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--t3);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 8px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    min-width: 52px;
+    position: relative;
+    gap: 2px;
+  }
+  
+  .bottom-nav-item svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.2s ease;
+  }
+  
+  /* Активный пункт */
+  .bottom-nav-item.active {
+    color: var(--acc);
+  }
+  
+  .bottom-nav-item.active svg {
+    transform: scale(1.1);
+  }
+  
+  /* Эффект при тапе */
+  .bottom-nav-item:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Бейдж для уведомлений */
+  .bottom-nav-badge {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    min-width: 18px;
+    height: 18px;
+    background: var(--acc2);
+    border-radius: 9px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid var(--s1);
+    box-shadow: 0 2px 8px rgba(255, 95, 135, 0.4);
+  }
+  
+  /* Отступ снизу для контента чтобы не перекрывался панелью */
+  body {
+    padding-bottom: 60px;
+  }
+  
+  .page {
+    padding-bottom: 20px;
+  }
+  
+  /* Global player тоже поднимаем над нижней панелью */
+  .gplayer.active {
+    bottom: 60px !important;
+  }
+  
+  .nav-srch {
+    display: none; /* Скрываем поиск на мобильных */
+  }
+  
+  .user-pill {
+    padding: 2px 8px 2px 2px;
+  }
+  
+  .user-pill img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .user-pill-n {
+    font-size: 11px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* LAYOUT */
+  .page {
+    padding: 12px 0; /* Убираем боковые отступы */
+  }
+  
+  .two-col {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  /* ВАЖНО: Полностью скрываем боковые панели на мобильных */
+  .side-col {
+    display: none !important;
+  }
+  
+  .main-col {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* CARDS */
+  .card {
+    border-radius: 0; /* Убираем скругления на мобильных */
+    margin-bottom: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none; /* Оставляем только нижнюю границу */
+  }
+  
+  .card:first-child {
+    border-top: 1px solid var(--b1);
+  }
+  
+  .card-head {
+    padding: 12px 16px 10px;
+    font-size: 13px;
+  }
+  
+  .icon-badge {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* COMPOSER */
+  .composer {
+    padding: 14px 16px;
+  }
+  
+  .composer-av {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .composer textarea {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  
+  .composer-foot {
+    flex-wrap: wrap;
+  }
+  
+  .attach-btn {
+    font-size: 11.5px;
+    padding: 5px 8px;
+  }
+
+  /* POSTS */
+  .post {
+    padding: 14px 16px;
+  }
+  
+  .post-av {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .post-meta {
+    gap: 4px;
+  }
+  
+  .post-name {
+    font-size: 13px;
+  }
+  
+  .post-login {
+    font-size: 11px;
+  }
+  
+  .post-time {
+    font-size: 10.5px;
+  }
+  
+  .post-body {
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  
+  .post-actions {
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+  
+  .act {
+    font-size: 11px;
+    padding: 4px 7px;
+  }
+
+  /* COMMENTS */
+  .cmt-av {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .cmt-ta {
+    font-size: 12px;
+    padding: 6px 9px;
+  }
+  
+  .cmt-bubble {
+    padding: 7px 9px;
+  }
+  
+  .cmt-name {
+    font-size: 11px;
+  }
+  
+  .cmt-text {
+    font-size: 12px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    font-size: 12px;
+    padding: 7px 15px;
+  }
+  
+  .btn-sm {
+    padding: 5px 11px;
+    font-size: 11px;
+  }
+  
+  .btn-xs {
+    padding: 3px 8px;
+    font-size: 10.5px;
+  }
+
+  /* PROFILE */
+  .profile-banner {
+    height: 100px;
+  }
+  
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    left: 14px;
+    bottom: -40px;
+  }
+  
+  .profile-info {
+    padding: 50px 14px 14px;
+  }
+  
+  .profile-name {
+    font-size: 18px;
+  }
+  
+  .profile-login {
+    font-size: 12px;
+  }
+  
+  .profile-bio {
+    font-size: 13px;
+  }
+  
+  .profile-stats {
+    gap: 14px;
+  }
+  
+  .stat-box {
+    padding: 8px 12px;
+  }
+  
+  .stat-num {
+    font-size: 16px;
+  }
+  
+  .stat-label {
+    font-size: 10.5px;
+  }
+
+  /* TABS */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab {
+    font-size: 12px;
+    padding: 9px 14px;
+    flex-shrink: 0;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    padding: 20px;
+  }
+  
+  .lb-img {
+    max-width: 100%;
+    max-height: 80vh;
+  }
+
+  /* GLOBAL PLAYER */
+  .gplayer {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .gp-cover {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .gp-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .gp-title {
+    font-size: 12px;
+  }
+  
+  .gp-artist {
+    font-size: 10.5px;
+  }
+  
+  .gp-controls {
+    gap: 8px;
+  }
+  
+  .gp-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .gp-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .gp-time {
+    font-size: 10px;
+  }
+  
+  /* Скрываем некоторые элементы на мобильных */
+  .gp-vol-wrap {
+    display: none;
+  }
+
+  /* MUSIC PAGE */
+  .track-row {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .track-cover {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .track-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .track-title {
+    font-size: 13px;
+  }
+  
+  .track-artist {
+    font-size: 11px;
+  }
+  
+  .track-play-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* FRIENDS PAGE */
+  .friend-card {
+    padding: 12px;
+  }
+  
+  .friend-av {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .friend-name {
+    font-size: 13px;
+  }
+  
+  .friend-login {
+    font-size: 11px;
+  }
+
+  /* MESSAGES */
+  .msg-list {
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .msg-item {
+    padding: 10px 12px;
+  }
+  
+  .msg-av {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .msg-name {
+    font-size: 13px;
+  }
+  
+  .msg-preview {
+    font-size: 12px;
+  }
+
+  /* NOTIFICATIONS */
+  .notif-item {
+    padding: 10px 12px;
+  }
+  
+  .notif-av {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .notif-text {
+    font-size: 12.5px;
+  }
+
+  /* FORMS */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 14px !important;
+  }
+
+}
+
+/* ============================================
+   TABLET - 641px до 1024px (планшеты)
+   ============================================ */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  
+  /* NAVIGATION */
+  .nav {
+    padding: 0 16px;
+  }
+  
+  .nav-links {
+    gap: 2px;
+    overflow-x: visible; /* На планшетах прокрутка не нужна */
+  }
+  
+  .nav-links::after {
+    display: none; /* Убираем градиент */
+  }
+  
+  .nav-lbl {
+    display: inline; /* Показываем текстовые метки */
+  }
+
+  /* LAYOUT */
+  .page {
+    padding: 20px 16px;
+  }
+  
+  .two-col {
+    gap: 18px;
+  }
+  
+  /* На планшетах показываем боковую панель */
+  .side-col {
+    display: block !important;
+    width: 220px;
+  }
+
+  /* PROFILE */
+  .profile-banner {
+    height: 120px;
+  }
+  
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* GLOBAL PLAYER */
+  .gplayer {
+    padding: 12px 16px;
+  }
+  
+  .gp-cover {
+    width: 48px;
+    height: 48px;
+  }
+
+}
+
+/* ============================================
+   LARGE SCREENS - Более 1440px
+   ============================================ */
+
+@media (min-width: 1440px) {
+  
+  .page {
+    max-width: 1280px;
+    padding: 28px 20px;
+  }
+  
+  .side-col {
+    width: 300px;
+  }
+
+}
+
+/* ============================================
+   ВИСПИ-ТЯН - АДАПТАЦИЯ ДЛЯ AUTH СТРАНИЦ
+   ============================================ */
+
+/* Mobile - До 768px */
+@media (max-width: 768px) {
+  
+  /* Виспи-тян */
+  .wispy-chan {
+    width: 120px !important;
+    height: 160px !important;
+  }
+  
+  /* Диалог */
+  .speech-bubble {
+    max-width: 240px !important;
+    padding: 12px 14px !important;
+    font-size: 12.5px !important;
+  }
+  
+  .speech-bubble.left {
+    left: 140px !important;
+  }
+  
+  .speech-bubble.right {
+    right: 140px !important;
+  }
+  
+  /* Размещаем Виспи сверху на маленьких экранах */
+  body:has(.wispy-chan) {
+    padding-top: 180px !important;
+  }
+  
+  .wispy-chan {
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .speech-bubble {
+    top: 190px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .speech-bubble::after {
+    display: none; /* Скрываем хвостик на мобильных */
+  }
+  
+  /* Карточка регистрации/логина */
+  .card {
+    padding: 28px 24px !important;
+  }
+  
+  .logo {
+    font-size: 28px !important;
+    margin-bottom: 24px !important;
+  }
+  
+  /* Прогресс */
+  .progress {
+    margin-bottom: 20px !important;
+  }
+  
+  .progress-dot {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  
+  .progress-dot.active {
+    width: 20px !important;
+  }
+  
+  /* Поля формы */
+  .fg label {
+    font-size: 12px !important;
+  }
+  
+  .fg input,
+  .fg select {
+    padding: 11px 13px !important;
+    font-size: 13.5px !important;
+  }
+  
+  /* Кнопки выбора пола */
+  .gender-btns {
+    gap: 8px !important;
+  }
+  
+  .gender-btn {
+    padding: 10px !important;
+    font-size: 12.5px !important;
+  }
+  
+  /* Кнопки */
+  .btn {
+    padding: 12px !important;
+    font-size: 14px !important;
+  }
+  
+  /* Чекбоксы */
+  .chk-row {
+    font-size: 12px !important;
+  }
+  
+  .chk-row input[type=checkbox] {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+}
+
+/* Tablet для auth - 769px до 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  
+  .wispy-chan {
+    width: 150px !important;
+    height: 200px !important;
+  }
+  
+  .speech-bubble {
+    max-width: 280px !important;
+    font-size: 13.5px !important;
+  }
+  
+  .wispy-chan {
+    left: 30px !important;
+  }
+  
+  .speech-bubble.left {
+    left: 200px !important;
+  }
+  
+  .speech-bubble.right {
+    right: 200px !important;
+  }
+
+}
+
+/* ============================================
+   LANDSCAPE ORIENTATION - Альбомная
+   ============================================ */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  
+  /* Уменьшаем Виспи и диалог в ландшафте */
+  .wispy-chan {
+    width: 100px !important;
+    height: 140px !important;
+    top: 10px !important;
+  }
+  
+  .speech-bubble {
+    top: 160px !important;
+    max-width: 200px !important;
+    padding: 10px 12px !important;
+    font-size: 11.5px !important;
+  }
+  
+  body:has(.wispy-chan) {
+    padding-top: 140px !important;
+  }
+  
+  .card {
+    padding: 24px 20px !important;
+  }
+
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Скрытие на мобильных */
+@media (max-width: 640px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Скрытие на планшетах */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hide-tablet {
+    display: none !important;
+  }
+  
+  /* Скрываем нижнюю навигацию на планшетах */
+  .bottom-nav {
+    display: none !important;
+  }
+  
+  /* Убираем отступ снизу */
+  body {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Скрытие на десктопах */
+@media (min-width: 1025px) {
+  .hide-desktop {
+    display: none !important;
+  }
+  
+  /* Скрываем нижнюю навигацию на десктопах */
+  .bottom-nav {
+    display: none !important;
+  }
+  
+  /* Убираем отступ снизу */
+  body {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Показать только на мобильных */
+@media (min-width: 641px) {
+  .show-mobile {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & TOUCH
+   ============================================ */
+
+/* Увеличиваем область клика на touch устройствах */
+@media (hover: none) and (pointer: coarse) {
+  
+  button,
+  a,
+  .btn,
+  .act,
+  .tab,
+  input[type="checkbox"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav-a {
+    min-height: 40px;
+  }
+
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  
+  .nav,
+  .side-col,
+  .gplayer,
+  .composer,
+  .post-actions,
+  .wispy-chan,
+  .speech-bubble,
+  button {
+    display: none !important;
+  }
+  
+  .page {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+
+}
+
+/* ============================================
+   DARK MODE ADJUSTMENTS (опционально)
+   ============================================ */
+
+@media (prefers-color-scheme: light) {
+  /* Если пользователь предпочитает светлую тему */
+  /* Можно добавить корректировки */
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  
+  .card,
+  .post,
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .btn {
+    font-weight: 700;
+  }
+
+}
