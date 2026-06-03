@@ -9,35 +9,50 @@
 
 @media (max-width: 640px) {
   
-  /* NAVIGATION - Верхняя панель упрощенная */
+  /* NAVIGATION — Верхняя панель: логотип + поиск + аккаунт */
   .nav {
     padding: 0 12px;
-    height: 56px;
-    gap: 12px;
+    height: 52px;
+    gap: 8px;
   }
   
   .nav-logo {
-    font-size: 22px;
+    font-size: 24px;
+    flex-shrink: 0;
   }
   
-  /* СКРЫВАЕМ основное меню сверху - оно переезжает вниз */
+  /* СКРЫВАЕМ основное меню сверху — оно переехало вниз */
   .nav-links {
     display: none !important;
   }
   
-  /* Оставляем только правую часть сверху */
+  /* Правая часть: поиск + аватарка + выход */
   .nav-right {
     margin-left: auto;
-    gap: 10px;
+    gap: 6px;
+    flex-shrink: 0;
   }
   
+  /* Поиск — иконка без текста */
   .nav-srch {
-    padding: 7px 12px;
-    font-size: 13px;
+    display: flex;
+    padding: 6px 10px;
+    font-size: 0; /* Скрываем текст "Поиск" */
+    gap: 0;
+    min-width: 36px;
+    justify-content: center;
   }
   
+  .nav-srch svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* User-pill — только аватарка */
   .user-pill {
-    padding: 3px 10px 3px 3px;
+    padding: 2px;
+    border-radius: 50%;
+    border-width: 1.5px;
   }
   
   .user-pill img {
@@ -46,11 +61,7 @@
   }
   
   .user-pill-n {
-    font-size: 12px;
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: none; /* Скрываем имя на мобильных */
   }
   
   /* ============================================
@@ -58,84 +69,12 @@
      ============================================ */
   
   .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: var(--s1);
-    border-top: 1px solid var(--b1);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0 8px;
-    z-index: 999;
-    /* Эффект размытия */
-    backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(15, 17, 32, 0.95);
-  }
-  
-  .bottom-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--t3);
-    font-size: 10px;
-    font-weight: 500;
-    padding: 6px 8px;
-    border-radius: 10px;
-    transition: all 0.2s ease;
-    min-width: 52px;
-    position: relative;
-    gap: 2px;
-  }
-  
-  .bottom-nav-item svg {
-    width: 24px;
-    height: 24px;
-    transition: all 0.2s ease;
-  }
-  
-  /* Активный пункт */
-  .bottom-nav-item.active {
-    color: var(--acc);
-  }
-  
-  .bottom-nav-item.active svg {
-    transform: scale(1.1);
-  }
-  
-  /* Эффект при тапе */
-  .bottom-nav-item:active {
-    transform: scale(0.95);
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  /* Бейдж для уведомлений */
-  .bottom-nav-badge {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-    min-width: 18px;
-    height: 18px;
-    background: var(--acc2);
-    border-radius: 9px;
-    font-size: 10px;
-    font-weight: 700;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 4px;
-    border: 2px solid var(--s1);
-    box-shadow: 0 2px 8px rgba(255, 95, 135, 0.4);
+    display: flex !important;
   }
   
   /* Отступ снизу для контента чтобы не перекрывался панелью */
   body {
-    padding-bottom: 60px;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   }
   
   .page {
@@ -147,26 +86,7 @@
     bottom: 60px !important;
   }
   
-  .nav-srch {
-    display: none; /* Скрываем поиск на мобильных */
-  }
-  
-  .user-pill {
-    padding: 2px 8px 2px 2px;
-  }
-  
-  .user-pill img {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .user-pill-n {
-    font-size: 11px;
-    max-width: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  /* (поиск и user-pill уже настроены выше) */
 
   /* LAYOUT */
   .page {
@@ -606,111 +526,115 @@
 }
 
 /* ============================================
-   ВИСПИ-ТЯН - АДАПТАЦИЯ ДЛЯ AUTH СТРАНИЦ
+   ВИСПИ-ТЯН — АДАПТАЦИЯ ДЛЯ AUTH СТРАНИЦ
    ============================================ */
 
-/* Mobile - До 768px */
+/* Mobile — До 768px */
 @media (max-width: 768px) {
-  
-  /* Виспи-тян */
-  .wispy-chan {
-    width: 120px !important;
-    height: 160px !important;
-  }
-  
-  /* Диалог */
-  .speech-bubble {
-    max-width: 240px !important;
-    padding: 12px 14px !important;
-    font-size: 12.5px !important;
-  }
-  
-  .speech-bubble.left {
-    left: 140px !important;
-  }
-  
-  .speech-bubble.right {
-    right: 140px !important;
-  }
-  
-  /* Размещаем Виспи сверху на маленьких экранах */
+
+  /* === ВИСПИ В УГЛУ (МОБИЛЬНЫЙ ВАРИАНТ) === */
+
+  /* Убираем отступ сверху — больше не нужен */
   body:has(.wispy-chan) {
-    padding-top: 180px !important;
+    padding-top: 0 !important;
   }
-  
+
+  /* Виспи — плавающий персонаж в правом нижнем углу */
   .wispy-chan {
-    top: 20px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    width: 88px !important;
+    height: 118px !important;
+    top: auto !important;
+    bottom: 20px !important;
+    left: auto !important;
+    right: 14px !important;
+    transform: none !important;
+    z-index: 1001;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 16px rgba(255, 107, 157, 0.4));
   }
-  
+
+  .wispy-chan img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Пузырь — слева от Виспи, чуть выше */
   .speech-bubble {
-    top: 190px !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
+    top: auto !important;
+    bottom: 148px !important;
+    left: auto !important;
+    right: 12px !important;
+    transform: none !important;
+    max-width: 230px !important;
+    min-width: 140px !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    padding: 13px 15px !important;
+    border-radius: 18px 18px 4px 18px !important;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important;
   }
-  
+
+  /* Скрываем хвостик — он не нужен для угловой версии */
   .speech-bubble::after {
-    display: none; /* Скрываем хвостик на мобильных */
+    display: none !important;
   }
-  
-  /* Карточка регистрации/логина */
+
+  /* Карточка формы */
   .card {
     padding: 28px 24px !important;
   }
-  
+
   .logo {
     font-size: 28px !important;
     margin-bottom: 24px !important;
   }
-  
-  /* Прогресс */
+
+  /* Прогресс-бар */
   .progress {
     margin-bottom: 20px !important;
   }
-  
+
   .progress-dot {
     width: 6px !important;
     height: 6px !important;
   }
-  
+
   .progress-dot.active {
     width: 20px !important;
   }
-  
+
   /* Поля формы */
   .fg label {
     font-size: 12px !important;
   }
-  
+
   .fg input,
   .fg select {
     padding: 11px 13px !important;
     font-size: 13.5px !important;
   }
-  
-  /* Кнопки выбора пола */
+
+  /* Кнопки пола */
   .gender-btns {
     gap: 8px !important;
   }
-  
+
   .gender-btn {
     padding: 10px !important;
     font-size: 12.5px !important;
   }
-  
+
   /* Кнопки */
   .btn {
     padding: 12px !important;
     font-size: 14px !important;
   }
-  
+
   /* Чекбоксы */
   .chk-row {
     font-size: 12px !important;
   }
-  
+
   .chk-row input[type=checkbox] {
     width: 16px !important;
     height: 16px !important;
@@ -718,7 +642,7 @@
 
 }
 
-/* Tablet для auth - 769px до 1024px */
+/* Tablet для auth — 769px до 1024px */
 @media (min-width: 769px) and (max-width: 1024px) {
   
   .wispy-chan {
@@ -746,27 +670,29 @@
 }
 
 /* ============================================
-   LANDSCAPE ORIENTATION - Альбомная
+   LANDSCAPE ORIENTATION — Альбомная
    ============================================ */
 
 @media (max-width: 768px) and (orientation: landscape) {
   
-  /* Уменьшаем Виспи и диалог в ландшафте */
+  /* Виспи в альбомном — чуть меньше, чтобы не мешала */
   .wispy-chan {
-    width: 100px !important;
-    height: 140px !important;
-    top: 10px !important;
+    width: 70px !important;
+    height: 94px !important;
+    bottom: 12px !important;
+    right: 12px !important;
   }
-  
+
   .speech-bubble {
-    top: 160px !important;
+    bottom: 118px !important;
+    right: 12px !important;
     max-width: 200px !important;
-    padding: 10px 12px !important;
-    font-size: 11.5px !important;
+    font-size: 12px !important;
+    padding: 10px 13px !important;
   }
-  
+
   body:has(.wispy-chan) {
-    padding-top: 140px !important;
+    padding-top: 0 !important;
   }
   
   .card {

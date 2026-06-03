@@ -252,15 +252,18 @@ function showDialogue(step) {
     bubble.textContent = dialogue.text;
     bubble.className = 'speech-bubble ' + dialogue.position;
     
-    // 3. Устанавливаем новую позицию
-    if (dialogue.position === 'left') {
-      bubble.style.left = '230px';
-      bubble.style.top = '50%';
-      bubble.style.transform = 'translateY(-50%)';
-    } else {
-      bubble.style.right = '230px';
-      bubble.style.top = '50%';
-      bubble.style.transform = 'translateY(-50%)';
+    // 3. Устанавливаем позицию только на десктопе
+    //    На мобильных responsive.css ставит пузырь в угол через !important
+    if (window.innerWidth > 768) {
+      if (dialogue.position === 'left') {
+        bubble.style.left = '230px';
+        bubble.style.top = '50%';
+        bubble.style.transform = 'translateY(-50%)';
+      } else {
+        bubble.style.right = '230px';
+        bubble.style.top = '50%';
+        bubble.style.transform = 'translateY(-50%)';
+      }
     }
     
     // 4. Показываем
@@ -269,6 +272,9 @@ function showDialogue(step) {
 }
 
 function positionWispy(side, flip = false) {
+  // На мобильных — CSS сам ставит Виспи в угол, ничего не делаем
+  if (window.innerWidth <= 768) return;
+  
   const wispy = document.getElementById('wispy');
   const img = document.getElementById('wispy-img');
   

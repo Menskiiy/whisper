@@ -176,15 +176,22 @@ function showDialogue(text) {
   
   setTimeout(() => {
     bubble.textContent = text;
-    bubble.style.left = '230px';
-    bubble.style.top = '50%';
-    bubble.style.transform = 'translateY(-50%)';
+    
+    // На мобильных — CSS сам позиционирует через !important
+    if (window.innerWidth > 768) {
+      bubble.style.left = '230px';
+      bubble.style.top = '50%';
+      bubble.style.transform = 'translateY(-50%)';
+    }
     
     setTimeout(() => bubble.classList.add('show'), 50);
   }, 300);
 }
 
 function positionWispy() {
+  // На мобильных — CSS позиционирует в угол через responsive.css
+  if (window.innerWidth <= 768) return;
+  
   const wispy = document.getElementById('wispy');
   wispy.style.left = '40px';
   wispy.style.top = '50%';

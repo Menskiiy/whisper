@@ -51,23 +51,29 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .nav-logout:hover{color:var(--acc2)}
 
 /* BOTTOM NAVIGATION (скрыта по умолчанию, показывается только на мобильных через responsive.css) */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(15,17,32,.98);
-  backdrop-filter:blur(20px) saturate(180%);border-top:1px solid var(--b1);
-  display:none;align-items:center;justify-content:space-around;padding:8px 0 max(8px,env(safe-area-inset-bottom));
-  z-index:999;box-shadow:0 -4px 20px rgba(0,0,0,.3)}
-.bottom-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;
-  color:var(--t3);text-decoration:none;padding:4px 12px;border-radius:10px;
-  transition:all .2s;position:relative;flex:1;max-width:80px}
-.bottom-nav-item svg{width:24px;height:24px;transition:all .2s}
-.bottom-nav-item span{font-size:10px;font-weight:500;transition:all .2s}
-.bottom-nav-item:active{transform:scale(0.95)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,11,22,.97);
+  backdrop-filter:blur(24px) saturate(200%);border-top:1px solid var(--b1);
+  display:none;align-items:center;justify-content:space-around;
+  padding:6px 4px max(10px,env(safe-area-inset-bottom));
+  z-index:999;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
+.bottom-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--t3);text-decoration:none;padding:5px 10px;border-radius:12px;
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);position:relative;flex:1;max-width:78px;min-width:52px}
+.bottom-nav-item svg{width:23px;height:23px;transition:all .22s}
+.bottom-nav-item img{transition:all .22s}
+.bottom-nav-item span{font-size:10px;font-weight:500;transition:all .22s;letter-spacing:.01em}
+.bottom-nav-item:active{transform:scale(0.9)}
 .bottom-nav-item.active{color:var(--acc)}
-.bottom-nav-item.active svg{transform:scale(1.1)}
-.bottom-nav-badge{position:absolute;top:2px;right:8px;min-width:16px;height:16px;
+.bottom-nav-item.active svg,.bottom-nav-item.active img{transform:scale(1.08)}
+/* Активный индикатор - точка под иконкой */
+.bottom-nav-item.active::before{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--acc);
+  box-shadow:0 0 8px rgba(124,90,245,.8)}
+.bottom-nav-badge{position:absolute;top:3px;right:6px;min-width:16px;height:16px;
   background:var(--acc2);border-radius:8px;font-size:9px;font-weight:700;color:#fff;
   display:flex;align-items:center;justify-content:center;padding:0 4px;
-  border:2px solid var(--s1);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+  border:2px solid rgba(10,11,22,.97);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
 /* LAYOUT */
 .page{max-width:1080px;margin:0 auto;padding:24px 16px}
@@ -326,6 +332,12 @@ a{color:inherit}
   .nav-links .nav-lbl{display:none}
   .masonry{columns:2}
   .video-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+}
+/* Мобильный nav: логотип + поиск (иконка) + аватарка + выход */
+@media(max-width:640px){
+  .nav-logout svg{width:18px;height:18px}
+  .nav-logout{padding:6px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid var(--b1)}
+  .nav-logout:hover{background:rgba(255,95,135,.1);border-color:var(--acc2)}
 }
 </style>
 @yield('head')
@@ -629,18 +641,20 @@ function previewVid(input, previewId) {
     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
     <span>Группы</span>
   </a>
-  <a href="{{ route('music.index') }}" class="bottom-nav-item {{ request()->routeIs('music.*') ? 'active':'' }}">
-    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-    <span>Музыка</span>
+  <a href="{{ route('messages.inbox') }}" class="bottom-nav-item {{ request()->routeIs('messages.*') ? 'active':'' }}" style="position:relative">
+    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+    <span>Чат</span>
+    @php $mc=auth()->user()->unreadMessagesCount() @endphp
+    @if($mc>0)<span class="bottom-nav-badge">{{ $mc>9?'9+':$mc }}</span>@endif
   </a>
-  <a href="{{ route('notifications') }}" class="bottom-nav-item {{ request()->routeIs('notifications') ? 'active':'' }}">
+  <a href="{{ route('notifications') }}" class="bottom-nav-item {{ request()->routeIs('notifications') ? 'active':'' }}" style="position:relative">
     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
     <span>Уведомления</span>
     @php $nc=auth()->user()->unreadNotificationsCount() @endphp
     @if($nc>0)<span class="bottom-nav-badge">{{ $nc>9?'9+':$nc }}</span>@endif
   </a>
   <a href="{{ route('profile') }}" class="bottom-nav-item {{ request()->routeIs('profile') ? 'active':'' }}">
-    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+    <img src="{{ auth()->user()->avatar ? asset('storage/avatars/'.auth()->user()->avatar) : asset('images/default.png') }}" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid currentColor;transition:all .2s">
     <span>Профиль</span>
   </a>
 </nav>
