@@ -32,7 +32,7 @@
       @endif
     </div>
     @if(auth()->user()->status)
-      <div class="p-status">✦ {{ auth()->user()->status }}</div>
+      <div class="p-status">{{ auth()->user()->status }}</div>
     @endif
     @if(auth()->user()->bio)
       <p class="p-bio">{{ auth()->user()->bio }}</p>
@@ -54,13 +54,13 @@
         <span class="p-meta-i">🌐 <a href="{{ auth()->user()->website }}" target="_blank">{{ parse_url(auth()->user()->website, PHP_URL_HOST) }}</a></span>
       @endif
       @if(auth()->user()->telegram)
-        <span class="p-meta-i">✈ <a href="https://t.me/{{ auth()->user()->telegram }}" target="_blank">@{{ auth()->user()->telegram }}</a></span>
+        <span class="p-meta-i">✈ <a href="https://t.me/{{ auth()->user()->telegram }}" target="_blank">{{ auth()->user()->telegram }}</a></span>
       @endif
       @if(auth()->user()->vk)
         <span class="p-meta-i">🔵 <a href="https://vk.com/{{ auth()->user()->vk }}" target="_blank">{{ auth()->user()->vk }}</a></span>
       @endif
       @if(auth()->user()->instagram)
-        <span class="p-meta-i">📷 <a href="https://instagram.com/{{ auth()->user()->instagram }}" target="_blank">@{{ auth()->user()->instagram }}</a></span>
+        <span class="p-meta-i">📷 <a href="https://instagram.com/{{ auth()->user()->instagram }}" target="_blank">{{ auth()->user()->instagram }}</a></span>
       @endif
       <span class="p-meta-i" style="font-size:11px;color:var(--t3)">На Whisper с {{ auth()->user()->created_at->format('M Y') }}</span>
     </div>

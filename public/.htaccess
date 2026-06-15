@@ -5,12 +5,12 @@
 
     RewriteEngine On
 
-    # ─────────────────────────────────────────────────────────────
-    # HTTPS за прокси (Railway, Heroku, Nginx SSL termination...)
-    # Railway принимает HTTPS снаружи, но к приложению идёт HTTP.
+    # ─────────────────────────────────────────────────────────────────────────
+    # HTTPS за прокси (Railway, Heroku, Nginx SSL termination)
     # Когда X-Forwarded-Proto: https — говорим PHP/Laravel «ты за HTTPS».
-    # Это исправляет asset(), url(), route() и action форм.
-    # ─────────────────────────────────────────────────────────────
+    # Это корректирует asset(), url(), route() и action форм.
+    # Для тестирования локально на http — ничего не меняется.
+    # ─────────────────────────────────────────────────────────────────────────
     RewriteCond %{HTTP:X-Forwarded-Proto} =https
     RewriteRule .* - [E=HTTPS:on,L]
 
@@ -22,12 +22,12 @@
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Redirect Trailing Slashes
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Front Controller
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]

@@ -11,6 +11,7 @@ class User extends Authenticatable {
         'login','name','email','password','gender','terms_accepted',
         'avatar','status','bio','birthday','location',
         'is_private','website','accent_color','banner','vk','telegram','instagram',
+        'wispy_personality',
     ];
     protected $hidden   = ['password','remember_token'];
     protected $casts    = ['email_verified_at'=>'datetime','birthday'=>'date','is_private'=>'boolean'];
